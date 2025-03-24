@@ -645,6 +645,17 @@ def create_blog_post(
         # Always set author to Richard Hallett
         author = DEFAULT_AUTHOR
 
+        # Check for empty content
+        if not content or content.strip() == "":
+            if not generate_with_ai and not transcript_data:
+                error_msg = "Blog post content cannot be empty"
+                log_error("create_tool", error_msg)
+                return BlogOperationResult(success=False, message=error_msg)
+            log_warning(
+                "create_tool",
+                "Empty content provided, will attempt to generate with AI",
+            )
+
         # Generate content with AI if requested
         if generate_with_ai and ANTHROPIC_AVAILABLE:
             try:
@@ -697,7 +708,11 @@ def create_blog_post(
                         transcript_summary = str(transcript_data)[:10000]
                 else:
                     # Use the provided content
-                    transcript_summary = content[:30000]
+                    transcript_summary = (
+                        content[:30000]
+                        if content
+                        else "Please generate a blog post based on the title."
+                    )
 
                 # Create specialized user prompt for blog writing
                 user_prompt = f"""
@@ -744,12 +759,36 @@ def create_blog_post(
                 content = generated_content
                 log_info("create_tool", "Successfully generated blog content with AI")
 
+                # Validate the generated content
+                if not content or content.strip() == "":
+                    error_msg = "AI failed to generate valid content"
+                    log_error("create_tool", error_msg)
+                    return BlogOperationResult(success=False, message=error_msg)
+
+                # Log content length for debugging
+                log_info(
+                    "create_tool",
+                    f"Generated content length: {len(content)} characters",
+                )
+
             except Exception as e:
                 log_error(
                     "create_tool", f"Error generating blog content with AI: {str(e)}"
                 )
                 # Continue with original content if AI generation fails
                 log_info("create_tool", "Falling back to original content")
+
+                # Check if we have valid content to fall back to
+                if not content or content.strip() == "":
+                    error_msg = "Failed to generate content with AI and no valid original content provided"
+                    log_error("create_tool", error_msg)
+                    return BlogOperationResult(success=False, message=error_msg)
+
+        # Final check for content
+        if not content or content.strip() == "":
+            error_msg = "Blog post content cannot be empty"
+            log_error("create_tool", error_msg)
+            return BlogOperationResult(success=False, message=error_msg)
 
         # Generate a unique ID and timestamps
         post_id = str(uuid.uuid4())
@@ -797,6 +836,12 @@ def create_blog_post(
             ghost_url=None,
         )
 
+        # Log the content length before saving
+        log_info(
+            "create_tool",
+            f"Final content length before saving: {len(blog_post.content)} characters",
+        )
+
         # Save the blog post to a JSON file
         file_path = os.path.join(BLOG_POSTS_DIR, f"{post_id}.json")
         with open(file_path, "w", encoding="utf-8") as f:
@@ -837,6 +882,11 @@ def read_blog_post(post_id: str) -> BlogOperationResult:
 
         with open(file_path, "r", encoding="utf-8") as f:
             blog_post_data = json.load(f)
+
+        # Validate that the blog post has content
+        content = blog_post_data.get("content", "")
+        if not content or content.strip() == "":
+            log_warning("read_tool", f"Blog post with ID {post_id} has empty content")
 
         # Create a BlogPost object from the data
         blog_post = BlogPost.from_dict(blog_post_data)
@@ -1077,6 +1127,13 @@ def publish_blog_post(post_id: str) -> BlogOperationResult:
 
     blog_data = read_result.data
 
+    # Validate that the blog post has content before attempting to publish
+    content = blog_data.get("content", "")
+    if not content or content.strip() == "":
+        error_msg = f"Cannot publish blog post with ID {post_id}: Content is empty"
+        log_error("update_tool", error_msg)
+        return BlogOperationResult(success=False, message=error_msg)
+
     # If the blog post is already published, check if it's on Ghost
     if blog_data.get("published") and blog_data.get("ghost_id"):
         return BlogOperationResult(
@@ -1087,6 +1144,12 @@ def publish_blog_post(post_id: str) -> BlogOperationResult:
 
     # Create BlogPost object from data
     blog_post = BlogPost.from_dict(blog_data)
+
+    # Log content length for debugging
+    log_info(
+        "update_tool",
+        f"Blog post content length before publishing: {len(blog_post.content)} characters",
+    )
 
     # Try to publish to Ghost
     ghost_success, ghost_message, ghost_id = publish_to_ghost(blog_post)
@@ -1687,6 +1750,20 @@ def publish_to_ghost(blog_post: BlogPost) -> Tuple[bool, str, Optional[str]]:
         log_error("ghost_api", error_msg)
         return False, error_msg, None
 
+    # Debug logging for content
+    content_length = len(blog_post.content) if blog_post.content else 0
+    content_snippet = (
+        blog_post.content[:150] + "..." if content_length > 0 else "EMPTY CONTENT"
+    )
+    log_info("ghost_api", f"Blog content length: {content_length} characters")
+    log_info("ghost_api", f"Content snippet: {content_snippet}")
+
+    if content_length == 0:
+        log_error(
+            "ghost_api", "Blog post content is empty! Cannot publish empty content."
+        )
+        return False, "Blog post content is empty", None
+
     # Generate JWT token for authentication
     token = generate_ghost_jwt_token(admin_api_key)
     if not token:
@@ -1697,28 +1774,25 @@ def publish_to_ghost(blog_post: BlogPost) -> Tuple[bool, str, Optional[str]]:
 
     # Convert markdown content to HTML for Ghost
     html_content = convert_markdown_to_html(blog_post.content)
+    html_length = len(html_content) if html_content else 0
+    log_info("ghost_api", f"HTML content length: {html_length} characters")
+
+    if html_length == 0:
+        log_error(
+            "ghost_api", "Converted HTML content is empty! Check markdown conversion."
+        )
+        return False, "Converted HTML content is empty", None
 
     # Format published date in ISO format with 'Z' suffix for UTC
     published_date = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.000Z")
 
-    # Prepare the post data
-    post_data = {
-        "posts": [
-            {
-                "title": blog_post.title,
-                "html": html_content,
-                "status": "published",
-                "tags": ghost_tags,
-                "published_at": published_date,
-                "meta_title": blog_post.title,
-                # Use author as string, not object
-                "authors": [blog_post.author],
-            }
-        ]
-    }
+    # Construct the API endpoint with source=html parameter for proper HTML processing
+    admin_api_url = urljoin(api_url, "ghost/api/admin/posts/?source=html")
 
-    # Construct the API endpoint
-    admin_api_url = urljoin(api_url, "ghost/api/admin/posts/")
+    # Wrap HTML content in a Lexical HTML card for lossless conversion
+    wrapped_html = f"""<!--kg-card-begin: html-->
+{html_content}
+<!--kg-card-end: html-->"""
 
     try:
         # Make the API request with JWT authentication
@@ -1730,19 +1804,60 @@ def publish_to_ghost(blog_post: BlogPost) -> Tuple[bool, str, Optional[str]]:
 
         log_info("ghost_api", f"Sending request to Ghost API: {admin_api_url}")
         log_info("ghost_api", f"Post title: {blog_post.title}")
+        log_info("ghost_api", f"Using source=html for lossless HTML conversion")
+
+        # Update post_data to use wrapped HTML
+        post_data = {
+            "posts": [
+                {
+                    "title": blog_post.title,
+                    "html": wrapped_html,
+                    "status": "published",
+                    "tags": ghost_tags,
+                    "published_at": published_date,
+                    "authors": [{"slug": "ghost"}],
+                    "visibility": "public",
+                    "featured": False,
+                    "meta_title": blog_post.title,
+                    "excerpt": (
+                        blog_post.content[:150].replace("\n", " ") + "..."
+                        if len(blog_post.content) > 150
+                        else blog_post.content
+                    ),
+                }
+            ]
+        }
 
         response = requests.post(admin_api_url, json=post_data, headers=headers)
 
+        # Debug logging for response
+        log_info("ghost_api", f"Response status code: {response.status_code}")
+        response_text_sample = (
+            response.text[:150] + "..."
+            if response.text and len(response.text) > 150
+            else response.text
+        )
+        log_info("ghost_api", f"Response sample: {response_text_sample}")
+
         # Check if the request was successful
         if response.status_code in (200, 201):
-            response_data = response.json()
-            ghost_post_id = response_data.get("posts", [{}])[0].get("id")
-            ghost_post_url = response_data.get("posts", [{}])[0].get("url")
-            return (
-                True,
-                f"Successfully published to Ghost: {ghost_post_url}",
-                ghost_post_id,
-            )
+            try:
+                response_data = response.json()
+                ghost_post_id = response_data.get("posts", [{}])[0].get("id")
+                ghost_post_url = response_data.get("posts", [{}])[0].get("url")
+                return (
+                    True,
+                    f"Successfully published to Ghost: {ghost_post_url}",
+                    ghost_post_id,
+                )
+            except Exception as e:
+                log_error("ghost_api", f"Error parsing successful response: {str(e)}")
+                # Even if we can't parse the response, consider it a success if status code is good
+                return (
+                    True,
+                    f"Successfully published to Ghost (status {response.status_code})",
+                    None,
+                )
         else:
             error_msg = f"Failed to publish to Ghost. Status code: {response.status_code}, Response: {response.text}"
             log_error("ghost_api", error_msg)
@@ -1752,6 +1867,118 @@ def publish_to_ghost(blog_post: BlogPost) -> Tuple[bool, str, Optional[str]]:
         error_msg = f"Error publishing to Ghost: {str(e)}"
         log_error("ghost_api", error_msg)
         return False, error_msg, None
+
+
+def create_lexical_content(markdown_content: str) -> str:
+    """
+    Create a basic Lexical format representation for Ghost from markdown content.
+
+    Args:
+        markdown_content: The markdown content to convert
+
+    Returns:
+        Lexical format JSON string
+    """
+    if not markdown_content:
+        return json.dumps(
+            {
+                "root": {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "detail": 0,
+                                    "format": 0,
+                                    "mode": "normal",
+                                    "style": "",
+                                    "text": "No content available",
+                                    "type": "extended-text",
+                                    "version": 1,
+                                }
+                            ],
+                            "direction": "ltr",
+                            "format": "",
+                            "indent": 0,
+                            "type": "paragraph",
+                            "version": 1,
+                        }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "type": "root",
+                    "version": 1,
+                }
+            }
+        )
+
+    # Split content into paragraphs
+    paragraphs = markdown_content.split("\n\n")
+
+    # Create children array for Lexical format
+    children = []
+
+    for paragraph in paragraphs:
+        if paragraph.strip():
+            # For simplicity, we're treating each paragraph as plain text
+            # In a full implementation, you would parse markdown syntax
+            children.append(
+                {
+                    "children": [
+                        {
+                            "detail": 0,
+                            "format": 0,
+                            "mode": "normal",
+                            "style": "",
+                            "text": paragraph.strip(),
+                            "type": "extended-text",
+                            "version": 1,
+                        }
+                    ],
+                    "direction": "ltr",
+                    "format": "",
+                    "indent": 0,
+                    "type": "paragraph",
+                    "version": 1,
+                }
+            )
+
+    # If no children were created, add a default paragraph
+    if not children:
+        children.append(
+            {
+                "children": [
+                    {
+                        "detail": 0,
+                        "format": 0,
+                        "mode": "normal",
+                        "style": "",
+                        "text": markdown_content.strip(),
+                        "type": "extended-text",
+                        "version": 1,
+                    }
+                ],
+                "direction": "ltr",
+                "format": "",
+                "indent": 0,
+                "type": "paragraph",
+                "version": 1,
+            }
+        )
+
+    # Create the full Lexical structure
+    lexical_structure = {
+        "root": {
+            "children": children,
+            "direction": "ltr",
+            "format": "",
+            "indent": 0,
+            "type": "root",
+            "version": 1,
+        }
+    }
+
+    return json.dumps(lexical_structure)
 
 
 def convert_markdown_to_html(content: str) -> str:
@@ -1764,58 +1991,105 @@ def convert_markdown_to_html(content: str) -> str:
     Returns:
         HTML content
     """
+    # Check for empty content
+    if not content or content.strip() == "":
+        log_error("ghost_api", "Cannot convert empty content to HTML")
+        return "<p>No content available</p>"  # Return minimal valid HTML
+
+    log_info(
+        "ghost_api",
+        f"Converting markdown to HTML, content length: {len(content)} characters",
+    )
+
     if MARKDOWN_AVAILABLE:
-        # Convert markdown to HTML using the markdown library
-        return markdown.markdown(
-            content,
-            extensions=[
-                "markdown.extensions.fenced_code",
-                "markdown.extensions.tables",
-                "markdown.extensions.nl2br",
-                "markdown.extensions.toc",
-            ],
-        )
+        try:
+            # Convert markdown to HTML using the markdown library
+            html_content = markdown.markdown(
+                content,
+                extensions=[
+                    "markdown.extensions.fenced_code",
+                    "markdown.extensions.tables",
+                    "markdown.extensions.nl2br",
+                    "markdown.extensions.toc",
+                ],
+            )
+
+            # Check if conversion produced valid HTML
+            if not html_content or html_content.strip() == "":
+                log_warning(
+                    "ghost_api",
+                    "Markdown conversion produced empty HTML, using fallback",
+                )
+                return simple_text_to_html(content)
+
+            return html_content
+        except Exception as e:
+            log_error("ghost_api", f"Error converting markdown to HTML: {str(e)}")
+            return simple_text_to_html(content)
     else:
         # Basic conversion if markdown package is not available
         log_warning(
             "ghost_api",
             "Markdown package not installed. Install with 'pip install markdown' for better HTML conversion",
         )
+        return simple_text_to_html(content)
 
-        # Very simple conversion for code blocks and headings
-        lines = content.split("\n")
-        in_code_block = False
-        html_lines = []
 
-        for line in lines:
-            # Code blocks
-            if line.startswith("```"):
-                if in_code_block:
-                    html_lines.append("</pre></code>")
-                    in_code_block = False
-                else:
-                    html_lines.append("<code><pre>")
-                    in_code_block = True
-                continue
+def simple_text_to_html(content: str) -> str:
+    """
+    Convert plain text to HTML with basic formatting.
 
-            # Headings
-            if line.startswith("# "):
-                html_lines.append(f"<h1>{line[2:]}</h1>")
-            elif line.startswith("## "):
-                html_lines.append(f"<h2>{line[3:]}</h2>")
-            elif line.startswith("### "):
-                html_lines.append(f"<h3>{line[4:]}</h3>")
-            # Paragraphs
-            elif line.strip() == "":
-                html_lines.append("<br>")
-            # Normal text
+    Args:
+        content: Plain text content
+
+    Returns:
+        Basic HTML representation of the text
+    """
+    if not content:
+        return "<p>No content available</p>"
+
+    # Very simple conversion for code blocks and headings
+    lines = content.split("\n")
+    in_code_block = False
+    html_lines = []
+
+    for line in lines:
+        # Code blocks
+        if line.startswith("```"):
+            if in_code_block:
+                html_lines.append("</pre></code>")
+                in_code_block = False
             else:
-                if in_code_block:
-                    html_lines.append(line)
-                else:
-                    html_lines.append(f"<p>{line}</p>")
+                html_lines.append("<code><pre>")
+                in_code_block = True
+            continue
 
-        return "\n".join(html_lines)
+        # Headings
+        if line.startswith("# "):
+            html_lines.append(f"<h1>{line[2:]}</h1>")
+        elif line.startswith("## "):
+            html_lines.append(f"<h2>{line[3:]}</h2>")
+        elif line.startswith("### "):
+            html_lines.append(f"<h3>{line[4:]}</h3>")
+        # Paragraphs
+        elif line.strip() == "":
+            html_lines.append("<br>")
+        # Normal text
+        else:
+            if in_code_block:
+                html_lines.append(line)
+            else:
+                html_lines.append(f"<p>{line}</p>")
+
+    # If we're still in a code block at the end, close it
+    if in_code_block:
+        html_lines.append("</pre></code>")
+
+    # If no HTML was generated, wrap the whole content in a paragraph
+    if not html_lines:
+        return f"<p>{content}</p>"
+
+    return "\n".join(html_lines)
 
 
 def generate_ghost_jwt_token(admin_api_key: str) -> Optional[str]:

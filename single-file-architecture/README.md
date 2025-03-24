@@ -7,6 +7,9 @@ A collection of powerful standalone agents built with a single-file architecture
 - [Blog Management Agent](#blog-management-agent) - Blog creation and management with Ghost CMS integration
 - [Transcription Agent](#transcription-agent) - Audio transcription pipeline with OpenAI Whisper
 
+> wait a sec
+- [I thought huge files were an anti-pattern?](https://www.oceanheart.blog/best-codebase-architecture-for-ai-coding-and-ai/)
+
 # Blog Management Agent
 
 A powerful single-file blog management system with Ghost CMS integration.
