@@ -1,0 +1,73 @@
+{
+  "original_file": "data/audio/my_top_6_claude_code_pro_tips_for_ai_coding_mcp_20250324_151153.mp3",
+  "total_duration": 1429483,
+  "chunks": [
+    {
+      "path": "data/chunks/my_top_6_claude_code_pro_tips_for_ai_coding_mcp_20250324_151153_chunk_001.mp3",
+      "start_time": 0,
+      "end_time": 131064,
+      "index": 1
+    },
+    {
+      "path": "data/chunks/my_top_6_claude_code_pro_tips_for_ai_coding_mcp_20250324_151153_chunk_002.mp3",
+      "start_time": 131064,
+      "end_time": 262128,
+      "index": 2
+    },
+    {
+      "path": "data/chunks/my_top_6_claude_code_pro_tips_for_ai_coding_mcp_20250324_151153_chunk_003.mp3",
+      "start_time": 262128,
+      "end_time": 393192,
+      "index": 3
+    },
+    {
+      "path": "data/chunks/my_top_6_claude_code_pro_tips_for_ai_coding_mcp_20250324_151153_chunk_004.mp3",
+      "start_time": 393192,
+      "end_time": 524256,
+      "index": 4
+    },
+    {
+      "path": "data/chunks/my_top_6_claude_code_pro_tips_for_ai_coding_mcp_20250324_151153_chunk_005.mp3",
+      "start_time": 524256,
+      "end_time": 655320,
+      "index": 5
+    },
+    {
+      "path": "data/chunks/my_top_6_claude_code_pro_tips_for_ai_coding_mcp_20250324_151153_chunk_006.mp3",
+      "start_time": 655320,
+      "end_time": 786384,
+      "index": 6
+    },
+    {
+      "path": "data/chunks/my_top_6_claude_code_pro_tips_for_ai_coding_mcp_20250324_151153_chunk_007.mp3",
+      "start_time": 786384,
+      "end_time": 917448,
+      "index": 7
+    },
+    {
+      "path": "data/chunks/my_top_6_claude_code_pro_tips_for_ai_coding_mcp_20250324_151153_chunk_008.mp3",
+      "start_time": 917448,
+      "end_time": 1048512,
+      "index": 8
+    },
+    {
+      "path": "data/chunks/my_top_6_claude_code_pro_tips_for_ai_coding_mcp_20250324_151153_chunk_009.mp3",
+      "start_time": 1048512,
+      "end_time": 1179576,
+      "index": 9
+    },
+    {
+      "path": "data/chunks/my_top_6_claude_code_pro_tips_for_ai_coding_mcp_20250324_151153_chunk_010.mp3",
+      "start_time": 1179576,
+      "end_time": 1310640,
+      "index": 10
+    },
+    {
+      "path": "data/chunks/my_top_6_claude_code_pro_tips_for_ai_coding_mcp_20250324_151153_chunk_011.mp3",
+      "start_time": 1310640,
+      "end_time": 1429483,
+      "index": 11
+    }
+  ],
+  "created_at": "2025-03-24T16:42:35.404329"
+}

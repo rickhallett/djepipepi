@@ -1,0 +1,149 @@
+{
+  "audio_path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_018.mp3",
+  "text": "to scale our impact even further beyond. We're gonna be talking, and more importantly, building agents on the channel over 2025. Like, subscribe, and comment to stay connected to this content. And no matter what, stay focused and keep building.",
+  "segments": [
+    {
+      "id": 0,
+      "avg_logprob": -0.2425750195980072,
+      "compression_ratio": 1.4186046123504639,
+      "end": 3.359999895095825,
+      "no_speech_prob": 0.06840977072715759,
+      "seek": 0,
+      "start": 0.0,
+      "temperature": 0.0,
+      "text": " to scale our impact even further beyond.",
+      "tokens": [
+        50364,
+        281,
+        4373,
+        527,
+        2712,
+        754,
+        3052,
+        4399,
+        13,
+        50532
+      ]
+    },
+    {
+      "id": 1,
+      "avg_logprob": -0.2425750195980072,
+      "compression_ratio": 1.4186046123504639,
+      "end": 4.980000019073486,
+      "no_speech_prob": 0.06840977072715759,
+      "seek": 0,
+      "start": 3.359999895095825,
+      "temperature": 0.0,
+      "text": " We're gonna be talking, and more importantly,",
+      "tokens": [
+        50532,
+        492,
+        434,
+        799,
+        312,
+        1417,
+        11,
+        293,
+        544,
+        8906,
+        11,
+        50613
+      ]
+    },
+    {
+      "id": 2,
+      "avg_logprob": -0.2425750195980072,
+      "compression_ratio": 1.4186046123504639,
+      "end": 8.220000267028809,
+      "no_speech_prob": 0.06840977072715759,
+      "seek": 0,
+      "start": 4.980000019073486,
+      "temperature": 0.0,
+      "text": " building agents on the channel over 2025.",
+      "tokens": [
+        50613,
+        2390,
+        12554,
+        322,
+        264,
+        2269,
+        670,
+        39209,
+        13,
+        50775
+      ]
+    },
+    {
+      "id": 3,
+      "avg_logprob": -0.2425750195980072,
+      "compression_ratio": 1.4186046123504639,
+      "end": 10.180000305175781,
+      "no_speech_prob": 0.06840977072715759,
+      "seek": 0,
+      "start": 8.220000267028809,
+      "temperature": 0.0,
+      "text": " Like, subscribe, and comment",
+      "tokens": [
+        50775,
+        1743,
+        11,
+        3022,
+        11,
+        293,
+        2871,
+        50873
+      ]
+    },
+    {
+      "id": 4,
+      "avg_logprob": -0.2425750195980072,
+      "compression_ratio": 1.4186046123504639,
+      "end": 12.100000381469727,
+      "no_speech_prob": 0.06840977072715759,
+      "seek": 0,
+      "start": 10.180000305175781,
+      "temperature": 0.0,
+      "text": " to stay connected to this content.",
+      "tokens": [
+        50873,
+        281,
+        1754,
+        4582,
+        281,
+        341,
+        2701,
+        13,
+        50969
+      ]
+    },
+    {
+      "id": 5,
+      "avg_logprob": -0.2425750195980072,
+      "compression_ratio": 1.4186046123504639,
+      "end": 15.859999656677246,
+      "no_speech_prob": 0.06840977072715759,
+      "seek": 0,
+      "start": 12.100000381469727,
+      "temperature": 0.0,
+      "text": " And no matter what, stay focused and keep building.",
+      "tokens": [
+        50969,
+        400,
+        572,
+        1871,
+        437,
+        11,
+        1754,
+        5178,
+        293,
+        1066,
+        2390,
+        13,
+        51157
+      ]
+    }
+  ],
+  "language": "english",
+  "duration": 17.649999618530273,
+  "timestamp": 1742835517.746474
+}

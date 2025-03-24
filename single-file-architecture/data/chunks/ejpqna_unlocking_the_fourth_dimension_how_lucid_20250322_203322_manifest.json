@@ -1,0 +1,133 @@
+{
+  "original_file": "data/audio/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322.mp3",
+  "total_duration": 2670248,
+  "chunks": [
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_001.mp3",
+      "start_time": 0,
+      "end_time": 131067,
+      "index": 1
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_002.mp3",
+      "start_time": 131067,
+      "end_time": 262134,
+      "index": 2
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_003.mp3",
+      "start_time": 262134,
+      "end_time": 393201,
+      "index": 3
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_004.mp3",
+      "start_time": 393201,
+      "end_time": 524268,
+      "index": 4
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_005.mp3",
+      "start_time": 524268,
+      "end_time": 655335,
+      "index": 5
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_006.mp3",
+      "start_time": 655335,
+      "end_time": 786402,
+      "index": 6
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_007.mp3",
+      "start_time": 786402,
+      "end_time": 917469,
+      "index": 7
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_008.mp3",
+      "start_time": 917469,
+      "end_time": 1048536,
+      "index": 8
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_009.mp3",
+      "start_time": 1048536,
+      "end_time": 1179603,
+      "index": 9
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_010.mp3",
+      "start_time": 1179603,
+      "end_time": 1310670,
+      "index": 10
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_011.mp3",
+      "start_time": 1310670,
+      "end_time": 1441737,
+      "index": 11
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_012.mp3",
+      "start_time": 1441737,
+      "end_time": 1572804,
+      "index": 12
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_013.mp3",
+      "start_time": 1572804,
+      "end_time": 1703871,
+      "index": 13
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_014.mp3",
+      "start_time": 1703871,
+      "end_time": 1834938,
+      "index": 14
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_015.mp3",
+      "start_time": 1834938,
+      "end_time": 1966005,
+      "index": 15
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_016.mp3",
+      "start_time": 1966005,
+      "end_time": 2097072,
+      "index": 16
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_017.mp3",
+      "start_time": 2097072,
+      "end_time": 2228139,
+      "index": 17
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_018.mp3",
+      "start_time": 2228139,
+      "end_time": 2359206,
+      "index": 18
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_019.mp3",
+      "start_time": 2359206,
+      "end_time": 2490273,
+      "index": 19
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_020.mp3",
+      "start_time": 2490273,
+      "end_time": 2621340,
+      "index": 20
+    },
+    {
+      "path": "data/chunks/ejpqna_unlocking_the_fourth_dimension_how_lucid_20250322_203322_chunk_021.mp3",
+      "start_time": 2621340,
+      "end_time": 2670248,
+      "index": 21
+    }
+  ],
+  "created_at": "2025-03-24T16:38:24.590078"
+}

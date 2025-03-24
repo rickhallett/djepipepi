@@ -1,0 +1,115 @@
+{
+  "original_file": "data/audio/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153.mp3",
+  "total_duration": 2245781,
+  "chunks": [
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_001.mp3",
+      "start_time": 0,
+      "end_time": 131066,
+      "index": 1
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_002.mp3",
+      "start_time": 131066,
+      "end_time": 262132,
+      "index": 2
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_003.mp3",
+      "start_time": 262132,
+      "end_time": 393198,
+      "index": 3
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_004.mp3",
+      "start_time": 393198,
+      "end_time": 524264,
+      "index": 4
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_005.mp3",
+      "start_time": 524264,
+      "end_time": 655330,
+      "index": 5
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_006.mp3",
+      "start_time": 655330,
+      "end_time": 786396,
+      "index": 6
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_007.mp3",
+      "start_time": 786396,
+      "end_time": 917462,
+      "index": 7
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_008.mp3",
+      "start_time": 917462,
+      "end_time": 1048528,
+      "index": 8
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_009.mp3",
+      "start_time": 1048528,
+      "end_time": 1179594,
+      "index": 9
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_010.mp3",
+      "start_time": 1179594,
+      "end_time": 1310660,
+      "index": 10
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_011.mp3",
+      "start_time": 1310660,
+      "end_time": 1441726,
+      "index": 11
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_012.mp3",
+      "start_time": 1441726,
+      "end_time": 1572792,
+      "index": 12
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_013.mp3",
+      "start_time": 1572792,
+      "end_time": 1703858,
+      "index": 13
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_014.mp3",
+      "start_time": 1703858,
+      "end_time": 1834924,
+      "index": 14
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_015.mp3",
+      "start_time": 1834924,
+      "end_time": 1965990,
+      "index": 15
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_016.mp3",
+      "start_time": 1965990,
+      "end_time": 2097056,
+      "index": 16
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_017.mp3",
+      "start_time": 2097056,
+      "end_time": 2228122,
+      "index": 17
+    },
+    {
+      "path": "data/chunks/age_of_agents_how_to_evolve_your_o3_mini_prompts_20250324_151153_chunk_018.mp3",
+      "start_time": 2228122,
+      "end_time": 2245781,
+      "index": 18
+    }
+  ],
+  "created_at": "2025-03-24T16:54:53.147443"
+}

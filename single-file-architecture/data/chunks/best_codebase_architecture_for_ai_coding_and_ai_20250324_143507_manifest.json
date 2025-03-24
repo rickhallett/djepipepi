@@ -1,0 +1,97 @@
+{
+  "original_file": "data/audio/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507.mp3",
+  "total_duration": 1884800,
+  "chunks": [
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_001.mp3",
+      "start_time": 0,
+      "end_time": 131065,
+      "index": 1
+    },
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_002.mp3",
+      "start_time": 131065,
+      "end_time": 262130,
+      "index": 2
+    },
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_003.mp3",
+      "start_time": 262130,
+      "end_time": 393195,
+      "index": 3
+    },
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_004.mp3",
+      "start_time": 393195,
+      "end_time": 524260,
+      "index": 4
+    },
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_005.mp3",
+      "start_time": 524260,
+      "end_time": 655325,
+      "index": 5
+    },
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_006.mp3",
+      "start_time": 655325,
+      "end_time": 786390,
+      "index": 6
+    },
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_007.mp3",
+      "start_time": 786390,
+      "end_time": 917455,
+      "index": 7
+    },
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_008.mp3",
+      "start_time": 917455,
+      "end_time": 1048520,
+      "index": 8
+    },
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_009.mp3",
+      "start_time": 1048520,
+      "end_time": 1179585,
+      "index": 9
+    },
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_010.mp3",
+      "start_time": 1179585,
+      "end_time": 1310650,
+      "index": 10
+    },
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_011.mp3",
+      "start_time": 1310650,
+      "end_time": 1441715,
+      "index": 11
+    },
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_012.mp3",
+      "start_time": 1441715,
+      "end_time": 1572780,
+      "index": 12
+    },
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_013.mp3",
+      "start_time": 1572780,
+      "end_time": 1703845,
+      "index": 13
+    },
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_014.mp3",
+      "start_time": 1703845,
+      "end_time": 1834910,
+      "index": 14
+    },
+    {
+      "path": "data/chunks/best_codebase_architecture_for_ai_coding_and_ai_20250324_143507_chunk_015.mp3",
+      "start_time": 1834910,
+      "end_time": 1884800,
+      "index": 15
+    }
+  ],
+  "created_at": "2025-03-24T16:51:37.999476"
+}
