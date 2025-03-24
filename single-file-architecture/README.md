@@ -2,20 +2,6 @@
 
 A collection of powerful standalone agents built with a single-file architecture approach.
 
-# /// script
-# dependencies = [
-#   "anthropic>=0.15.0",
-#   "python-dotenv>=1.0.0",
-#   "requests>=2.31.0",
-#   "markdown>=3.5.0",
-#   "python-frontmatter>=1.0.0",
-#   "pyjwt>=2.8.0",
-#   "rich>=13.6.0",
-#   "openai>=1.3.0",
-#   "pydub>=0.25.1",
-# ]
-# ///
-
 ## Tools Overview
 
 - [Blog Management Agent](#blog-management-agent) - Blog creation and management with Ghost CMS integration
